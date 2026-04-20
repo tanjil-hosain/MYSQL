@@ -54,5 +54,23 @@ if(isset($_POST["submit"])){
             <input type="submit" name="add_submit" value="Submit">
         </fieldset>
      </form>
+
+     <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <tr>
+                <?php
+                $manufac = $database->query("select * from manufacturs");
+                while(list($_mid , $_uname, $price) = $manufac->fetch_row()){
+                   
+                
+                }
+                ?>
+             
+            </tr>
+            
+        </tr>
+     </table>
 </body>
 </html>
