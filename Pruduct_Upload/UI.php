@@ -43,11 +43,11 @@ if(isset($_POST["submit"])){
             Price: <br>
             <input type="text" name="price"> <br> <br>
             Man_id: <br> 
-            <select name="" id="">
+            <select name="m_id" id="">
                 <?php
                 $manufac = $database->query("select * from manufacturs");
                 while(list($_mid , $_uname) = $manufac->fetch_row()){
-                    echo "<potion value='$_mid'> $_uname </option>";
+                    echo "<option value='$_mid'> $_uname </option>";
                 }
                 ?>
             </select>
