@@ -29,5 +29,20 @@ if(isset($_POST['btnsubmit'])){
         <input type="text" name="address"> <br> <br>
         <input type="submit" name="btnsubmit" value="Submit"> 
     </form>
+
+  <table>
+      <?php
+        $viws = $database->query("select * from user_show");
+    while(list ($e, $add) = $viws->fetch_row()){
+        echo "<tr>
+        <td> $e</td>
+
+        <td> $add</td>
+         </tr>";
+    
+    }
+
+    ?>
+  </table>
 </body>
 </html>
