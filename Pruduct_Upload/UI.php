@@ -13,6 +13,13 @@ if(isset($_POST["submit"])){
  }
 
 ?>
+<?php
+if(isset($_POST['delete_product'])){
+    $delete = $_POST['m_id'];
+    $database->query("DELETE FROM manufacturs WHERE id = '$delete'");
+
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,5 +85,19 @@ if(isset($_POST["submit"])){
         ?>
     </tbody>
 </table>
+<form action="" method="post">
+    <fieldset>
+        Man_id: <br> 
+            <select name="m_id" id="">
+                <?php
+                $manufac = $database->query("select * from manufacturs");
+                while(list($_mid , $_uname) = $manufac->fetch_row()){
+                    echo "<option value='$_mid'> $_uname </option>";
+                }
+                ?>
+            </select>
+            <input type="submit" name="delete_product" value="Delete">
+    </fieldset>
+</form>
 </body>
 </html>
