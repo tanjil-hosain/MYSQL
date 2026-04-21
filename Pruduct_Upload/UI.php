@@ -33,7 +33,8 @@ if(isset($_POST["submit"])){
         </fieldset>
     </form>
     <br> <br>
-     <form action="" method="post">
+
+    <form action="" method="post">
         <fieldset>
             <h1>
                 Add Products
@@ -55,22 +56,27 @@ if(isset($_POST["submit"])){
         </fieldset>
      </form>
 
-     <table>
+    <table border="1">
+    <thead>
         <tr>
             <th>Name</th>
             <th>Price</th>
-            <tr>
-                <?php
-                $manufac = $database->query("select * from manufacturs");
-                while(list($_mid , $_uname, $price) = $manufac->fetch_row()){
-                   
-                
-                }
-                ?>
-             
-            </tr>
-            
         </tr>
-     </table>
+    </thead>
+    <tbody>
+        <?php
+        $manufac = $database->query("SELECT * FROM manufacturs_view");
+
+        while(list($_mid, $_uname, $price) = $manufac->fetch_row()){
+        ?>
+            <tr>
+                <td><?php echo $_uname; ?></td>
+                <td><?php echo $price; ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
+</table>
 </body>
 </html>
