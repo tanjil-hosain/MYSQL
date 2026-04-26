@@ -1,0 +1,107 @@
+<?php
+$database = mysqli_connect("localhost", "root", "", "product_sell");
+if(isset($_POST["submit"])){
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $contact = $_POST['contact'];
+   $database->query("call add_manufacture('$name','$address', ' $contact')");
+}
+ if(isset($_POST['add_submit'])){
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $man_id = $_POST['m_id'];
+    $database->query("call add_product('$name','$price','$man_id')");
+ }
+
+?>
+<?php
+if(isset($_POST['delete_product'])){
+    $delete = $_POST['m_id'];
+    $database->query("DELETE FROM manufacturs WHERE id = '$delete'");
+
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <form action="" method="post">
+        <fieldset>
+            <h1>Manufacture:</h1>
+            Name: <br>
+            <input type="text" name="name"> <br> <br>
+            Address: <br>
+            <input type="text" name="address"> <br> <br>
+            Contact NO: <br>
+            <input type="text" name="contact"> <br><br>
+            <input type="submit" name="submit" value="Submit">
+        </fieldset>
+    </form>
+    <br> <br>
+
+    <form action="" method="post">
+        <fieldset>
+            <h1>
+                Add Products
+            </h1>
+            Name: <br> 
+            <input type="text" name="name"> <br> <br>
+            Price: <br>
+            <input type="text" name="price"> <br> <br>
+            Man_id: <br> 
+            <select name="m_id" id="">
+                <?php
+                $manufac = $database->query("select * from manufacturs");
+                while(list($_mid , $_uname) = $manufac->fetch_row()){
+                    echo "<option value='$_mid'> $_uname </option>";
+                }
+                ?>
+            </select>
+            <input type="submit" name="add_submit" value="Submit">
+        </fieldset>
+     </form>
+     
+    <table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $manufac = $database->query("SELECT * FROM 	product_view");
+
+        while(list($_mid, $_uname, $price) = $manufac->fetch_row()){
+        ?>
+            <tr>
+                <td><?php echo $_uname; ?></td>
+                <td><?php echo $price; ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
+</table> <br>
+<br>
+<form action="" method="post">
+    <fieldset>
+        Man_id: <br> 
+            <select name="m_id" id="">
+                <?php
+                $manufac = $database->query("select * from manufacturs");
+                while(list($_mid , $_uname) = $manufac->fetch_row()){
+                    echo "<option value='$_mid'> $_uname </option>";
+                }
+                ?>
+            </select>
+            <input type="submit" name="delete_product" value="Delete">
+    </fieldset>
+</form>
+</body>
+</html>
