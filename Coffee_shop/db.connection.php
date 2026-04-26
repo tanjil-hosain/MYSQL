@@ -1,5 +1,18 @@
 <?php
 $connect = mysqli_connect("localhost","root", "", "coffee_shop" );
+
+if(isset($_POST['submit'])){
+    $name= $_POST['name'];
+    $price = $_POST['price'];
+    $brand_name = $_POST['brand_name'];
+
+    $sql ="INSERT INTO product( name , price , brand_name) VALUES('$name', '$price', '$brand_name')";
+    if (mysqli_query($connect, $sql)) {
+        echo "success";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($connect);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,23 +29,23 @@ $connect = mysqli_connect("localhost","root", "", "coffee_shop" );
 </head>
 <body>
    <fieldset>
-     <form>
+     <form action="" method="post">
   <div class="mb-3">
-    <label class="form-label">name</label>
+    <label class="form-label">Name</label>
     <input type="text" class="form-control" name="name">
     
   </div>
    <div class="mb-3">
-    <label class="form-label">name</label>
-    <input type="text" class="form-control" name="name">
+    <label class="form-label">Price</label>
+    <input type="text" class="form-control" name="price">
     
   </div>
     <div class="mb-3">
-    <label class="form-label">name</label>
-    <input type="text" class="form-control" name="name">
+    <label class="form-label">Brand_name</label>
+    <input type="text" class="form-control" name="brand_name">
     
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
    </fieldset>
     <br>
