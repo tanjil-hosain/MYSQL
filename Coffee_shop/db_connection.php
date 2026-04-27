@@ -14,6 +14,17 @@ if(isset($_POST['submit'])){
     }
 }
 ?>
+
+<?php
+
+if(isset($_GET['delete'])){
+    $delete_id = $_GET['delete'];
+    $sql_delete = "DELETE FROM product WHERE id = '$delete_id'";
+    if(mysqli_query($connect, $sql_delete)== TRUE){
+        header('location:db_connection.php');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +67,7 @@ if(isset($_POST['submit'])){
             <th>Name</th>
             <th>Price</th>
             <th>Brand Name</th>
+            <th> Managment Action</th>
         </tr>
     </thead>
     <tbody>
@@ -65,9 +77,13 @@ if(isset($_POST['submit'])){
         while(list($id, $name, $price, $brand_name) = $show->fetch_row()){
         ?>
             <tr>
+                <td><?php echo $id; ?></td>
                 <td><?php echo $name; ?></td>
                 <td><?php echo $price; ?></td>
                 <td><?php echo $brand_name; ?></td>
+                <td><span class="btn btn-danger"> <a href='db_connection.php?delete=$id'>Delete</a>
+                </span></td>
+                 <td><span class="btn btn-success"><a href="update.php">Update</a></span></td>
             </tr>
         <?php
         }
