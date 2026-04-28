@@ -81,9 +81,9 @@ if(isset($_GET['delete'])){
                 <td><?php echo $name; ?></td>
                 <td><?php echo $price; ?></td>
                 <td><?php echo $brand_name; ?></td>
-                <td><span class="btn btn-danger"> <a href='db_connection.php?delete=$id'>Delete</a>
+                <td><span class="btn btn-danger"> <a href='db_connection.php?delete=<?php echo $id; ?>'>Delete</a>
                 </span></td>
-                 <td><span class="btn btn-success"><a href="update.php">Update</a></span></td>
+                 <td><span class="btn btn-success"><a href="update.php?id=<?php echo $id; ?>">Update</a></span></td>
             </tr>
         <?php
         }
