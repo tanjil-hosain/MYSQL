@@ -32,6 +32,7 @@ $database = mysqli_connect("localhost", "root", "", "img_upload");
                 <td><?php echo $price; ?></td>
                 <td><?php echo $brand_name; ?></td>
                 <td><img src="uploads/<?php echo $image; ?>" alt="pic" width="30px"></td>
+                <td><button><a href="delete.php?delete=<?php $id; ?>"></a></button></td>
 
             </tr>
             <?php } ?>
