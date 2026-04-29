@@ -9,7 +9,7 @@ $database = mysqli_connect("localhost", "root", "", "img_upload");
     <title>Document</title>
 </head>
 <body>
-    <table>
+    <table border="3" style="border-collapse: collapse;">
         <thead>
             <tr>
                 <td>ID</td>
