@@ -12,6 +12,22 @@ if(isset($_POST['brand'])){
     }
 }
 ?>
+<?php 
+if(isset($_POST['product'])){
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $brand_id = $_POST['brand_id'];
+    $img = $_FILES['img']['name'];
+    $tmp = $_FILES['img']['tmp_name'];
+    move_uploaded_file($tmp, "uploads/". $img);
+
+    $sql = "INSERT INTO products(name, price, brand_id, image) VALUES('$name', '$price', '$brand_id', '$img')";
+    if(mysqli_query($database, $sql)){
+        header("location:view.php");
+    }
+
+}
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +45,7 @@ if(isset($_POST['brand'])){
         <input type="submit" name="brand" value="Add Brand">
     </form>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         Name: <br>
         <input type="text" name="name"> <br>
         Price: <br>
@@ -38,13 +54,16 @@ if(isset($_POST['brand'])){
         <select name="brand_id" >
             <?php 
             $brand_data = $database->query("SELECT * FROM brands");
-            while(list($id,$brand_name) = $brand_data->fetch_assoc()){
+            while(list($id,$brand_name) = $brand_data->fetch_row()){
                 echo "<option value = '$id'> $brand_name</option>";
             }
              ?>
         </select>
-        
-        Image: 
+        Image Upload: <br> <br>
+        <input type="file" name="img" > <br> <br>
+        <input type="submit" name="product" value="Add Product">
+
+
     </form>
 </body>
 </html>
