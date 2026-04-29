@@ -31,7 +31,7 @@ $database = mysqli_connect("localhost", "root", "", "img_upload");
                 <td><?php echo $name;  ?></td>
                 <td><?php echo $price; ?></td>
                 <td><?php echo $brand_name; ?></td>
-                <td><?php echo $image; ?></td>
+                <td><img src="uploads/<?php echo $image; ?>" alt="pic" width="30px"></td>
 
             </tr>
             <?php } ?>
