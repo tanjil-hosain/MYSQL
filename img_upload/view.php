@@ -17,6 +17,7 @@ $database = mysqli_connect("localhost", "root", "", "img_upload");
                 <td>Price </td>
                 <td>Brand_name</td>
                 <td>Item</td>
+                <td>Action</td>
             </tr>
         </thead>
         <tbody>
@@ -32,11 +33,13 @@ $database = mysqli_connect("localhost", "root", "", "img_upload");
                 <td><?php echo $price; ?></td>
                 <td><?php echo $brand_name; ?></td>
                 <td><img src="uploads/<?php echo $image; ?>" alt="pic" width="30px"></td>
-                <td><button><a href="delete.php?delete=<?php $id; ?>"></a></button></td>
+                <td><button><a href="delete.php?delete=<?php echo  $id; ?>">Delete</a></button></td>
 
             </tr>
             <?php } ?>
         </tbody>
     </table>
+    <br> <br>
+    <button><a href="product_add.php">Add Products</a></button>
 </body>
 </html>
